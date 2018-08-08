@@ -84,12 +84,14 @@ setTimeout(function(){
  事件环是一种运行时机制，它像个钟表一样，每滴答一下，就去看看`stack`里有没有事需要处理，没有的话就去事件队列（`Event Queue`）看看有没有事做。
  一图顶千言，引用 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop) 的可视化模型进一步了解下：
  ![Alt text](event_loop_model.svg)
- - 栈（stack）——特点：先进后出
-    > 函数调用形成了一个栈帧; 
-    <iframe height=200 width=400 src="stack.gif">
+ - 栈（stack）
+    > 函数调用形成了一个栈帧;     
+    栈的特点：先进后出，具体怎样让那些函数先入后出的？看下图会恍然大明白，图中的帅哥就是Philip Roberts，看解释，别光看脸！
+     <iframe height=200 width=400 src="stack.gif">
+
  - 堆（heap）
     > 对象被分配在一个堆中，即用以表示一个大部分非结构化的内存区域。
- - 队列（queue）—— 特点：先进先出
+ - 任务队列（queue）—— 特点：先进先出
     > 一个 JavaScript 运行时包含了一个待处理的消息队列。
     每一个消息都有一个为了处理这个消息相关联的函数
 
