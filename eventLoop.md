@@ -70,11 +70,29 @@ setTimeout(function(){
 ## Javascript 单线程
  对Javascript而言，从诞生之日起，它就是单线程的。为什么呢？举个小栗子：如果可以多线程，a线程要添加某DOM节点，b线程要删除它，浏览器怎么办？难道要精分？
  所以，单线程减少了很多情境的复杂性。
- 既然js是单线程的，它又以什么样的规则来处理不同的任务呢？说到这里，就到了本文的重点部分：*事件环（Event Loop）*
-
- >Explained by Jake Archibald：
- Each 'thread' gets its own event loop, so each web worker gets its own, so it can execute independently, whereas all windows on the same origin share an event loop as they can synchronously communicate. 
+ 既然js是单线程的，它又以什么样的规则来处理并发任务呢？说到这里，就到了本文的重点部分——*事件环（Event Loop）*.看下概念：
  
+ + Explained by [Jake Archibald](https://jakearchibald.com/)：
+    >Each 'thread' gets its own event loop, so each web worker gets its own, so it can execute independently
+ 
+ + Or explained by [some other guys](https://hackernoon.com/understanding-js-the-event-loop-959beae3ac40):
+    > This is a constantly running process that checks if the
+     call stack is empty. Imagine it like a clock and every time it ticks it looks at 
+     the Call Stack and if it is empty it looks into the Event Queue. 
+ 
+ 简单来说，每个线程都有他自己的事件环，浏览器也拥有自己的事件环；
+ 事件环是一种运行时机制，它像个钟表一样，每滴答一下，就去看看`stack`里有没有事需要处理，没有的话就去事件队列（`Event Queue`）看看有没有事做。
+ 一图顶千言，引用 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop) 的可视化模型进一步了解下：
+ ![Alt text](event_loop_model.svg)
+ - 栈（stack）——特点：先进后出
+    > 函数调用形成了一个栈帧; 
+    <iframe height=200 width=400 src="stack.gif">
+ - 堆（heap）
+    > 对象被分配在一个堆中，即用以表示一个大部分非结构化的内存区域。
+ - 队列（queue）—— 特点：先进先出
+    > 一个 JavaScript 运行时包含了一个待处理的消息队列。
+    每一个消息都有一个为了处理这个消息相关联的函数
+
 ### macro-task(宏任务)与micro-task(微任务)
 众所周知，异步执行会在同步之后，那异步的执行规则又是什么呢？首先我们得先认识：macro-task(宏任务)与micro-task(微任务)
 + macro-task(宏任务): setTimeout, setInterval, setImmediate, I/O
