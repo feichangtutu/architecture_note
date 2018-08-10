@@ -86,7 +86,7 @@ setTimeout(function(){
  ![Alt text](event_loop_model.svg)
  - 栈（stack）
     > 函数调用形成了一个栈帧;     
-    栈的特点：先进后出，具体怎样让那些函数先入后出的？看下图会恍然大明白，图中的帅哥就是Philip Roberts，看解释，别光看脸！
+    栈的特点：先进后出，具体是怎样让那些函数先入后出的？看下图会恍然大明白，图中的帅哥就是Philip Roberts，看解释，别光看脸！
      <iframe height=200 width=400 src="stack.gif">
 
  - 堆（heap）
@@ -94,6 +94,13 @@ setTimeout(function(){
  - 任务队列（queue）—— 特点：先进先出
     > 一个 JavaScript 运行时包含了一个待处理的消息队列。
     每一个消息都有一个为了处理这个消息相关联的函数
+    
+    So, what isEvent loops? Defined by [webappapis](https://html.spec.whatwg.org/multipage/webappapis.html#task-queue):
+    > To coordinate events, user interaction, scripts, rendering, networking, and so forth, 
+    user agents must use event loops as described in this section. 
+    There are two kinds of event loops: those for browsing contexts, and those for workers.
+     
+
 
 ### macro-task(宏任务)与micro-task(微任务)
 众所周知，异步执行会在同步之后，那异步的执行规则又是什么呢？首先我们得先认识：macro-task(宏任务)与micro-task(微任务)
