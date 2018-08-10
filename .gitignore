@@ -9,3 +9,5 @@ yarn-error.log*
 .ideagit
 .idea
 .vscode
+event_loop_model.svg
+stack-opt.gif
