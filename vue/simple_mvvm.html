@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="input">
+</body>
+<script type="text/javascript">
+    let obj = {}
+    let temp = {}
+    Object.defineProperty(obj,'name',{
+        get(){
+        	return temp['name']
+        },
+        set(val){
+        	temp['name'] = val
+            input.value = obj.name// 将值赋给输入框
+        }
+    })
+    input.value = obj.name//页面一加载，会调用get方法
+    input.addEventListener('input', function(){//等待输入框的变化
+    	obj.name = this.value//值变化调用set方法
+    })
+
+</script>
+</html>
