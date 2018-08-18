@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div>div{
+            height:100px;
+            background: red;
+        }
+        .v-enter{
+            opacity: 0;
+        }
+        .v-enter-active{
+            -webkit-transition: 1s linear;
+            -moz-transition: 1s linear;
+            -ms-transition: 1s linear;
+            -o-transition: 1s linear;
+            transition: 1s linear;
+        }
+        .v-leave-active{
+            opacity: 0;
+            -webkit-transition: 1s linear;
+            -moz-transition: 1s linear;
+            -ms-transition: 1s linear;
+            -o-transition: 1s linear;
+            transition: 1s linear;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <transition>
+            <!--频繁dom切换用v-show-->
+            <div v-show="flag">hello</div>
+        </transition>
+        <button @click="flag=!flag">
+            切换
+        </button>
+    </div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data: {
+        	flag: true
+        }
+    })
+
+</script>
+</html>

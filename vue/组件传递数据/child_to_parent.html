@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子传父</title>
+</head>
+<body>
+<div id="app">
+    parent: {{money}}
+    <!--child.on('child-msg',things)-->
+    <child :m="money" @child-msg="things">
+
+    </child>
+</div>
+</body>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data:{money: 400},
+        methods:{
+            things(val){
+                this.money = val
+            }
+        },
+        components:{
+        	child: {
+        		props:['m'],
+        		template: `<div>son:{{m}}  <button @click="getMoney()">more</button></div>`,
+                methods:{
+        			getMoney(){
+        				this.$emit('child-msg',800)//触发自己的自定义事件
+                    }
+                }
+            }
+        }
+    })
+</script>
+</html>
